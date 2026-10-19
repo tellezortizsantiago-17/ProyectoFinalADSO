@@ -8,7 +8,7 @@ public class Inventario {
         this.productos = new ArrayList<>();
     }
 
-    // T-05: Registrar producto (Tellez)
+// T-05: Registrar producto (Tellez)
     public boolean registrarProducto(String codigo, String nombre, String categoria, double precio, int stock) {
         try {
             productos.add(new Producto(codigo, nombre, categoria, precio, stock));
@@ -16,5 +16,17 @@ public class Inventario {
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
             return false;
+        }
+    }
+
+    // T-06: Consultar y mostrar todos los productos registrados (Villada)
+    public void consultarProductos() {
+        if (productos.isEmpty()) {
+            System.out.println("No hay productos registrados en el inventario.");
+        } else {
+            System.out.println("=== LISTA DE PRODUCTOS REGISTRADOS ===");
+            for (Producto p : productos) {
+                System.out.println(p.toString());
+            }
         }
     }
