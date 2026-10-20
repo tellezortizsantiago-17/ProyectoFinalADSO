@@ -27,7 +27,7 @@ public class Main {
                     }
                     break;
                 case 2:
-                    miInventario.mostrarInventario();
+                   miInventario.consultarProductos();
                     break;
                 case 0:
                     System.out.println("Saliendo del sistema...");
