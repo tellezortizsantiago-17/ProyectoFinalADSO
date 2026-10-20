@@ -10,30 +10,48 @@ public class Main {
             System.out.println("\n=== GESTOR DE INVENTARIO Y VENTAS ===");
             System.out.println("1. Registrar nuevo producto");
             System.out.println("2. Mostrar inventario completo");
+            System.out.println("3. Actualizar precio de un producto"); // Agregado para T-09
             System.out.println("0. Salir");
             System.out.print("Elige una opción: ");
 
-            opcion = Integer.parseInt(scanner.nextLine().trim());
+            // T-11: Implementar bloque try-catch (NumberFormatException) (Zubieta)
+            try {
+                opcion = Integer.parseInt(scanner.nextLine().trim());
 
-            switch (opcion) {
-                case 1:
-                    System.out.print("Código: "); String cod = scanner.nextLine();
-                    System.out.print("Nombre: "); String nom = scanner.nextLine();
-                    System.out.print("Categoría: "); String cat = scanner.nextLine();
-                    System.out.print("Precio: "); double pre = Double.parseDouble(scanner.nextLine());
-                    System.out.print("Stock inicial: "); int stk = Integer.parseInt(scanner.nextLine());
-                    if(miInventario.registrarProducto(cod, nom, cat, pre, stk)) {
-                        System.out.println("Producto guardado con éxito.");
-                    }
-                    break;
-                case 2:
-                    miInventario.consultarProductos();
-                    break;
-                case 0:
-                    System.out.println("Saliendo del sistema...");
-                    break;
-                default:
-                    System.out.println("Opción no válida.");
+                switch (opcion) {
+                    case 1:
+                        System.out.print("Código: "); String cod = scanner.nextLine();
+                        System.out.print("Nombre: "); String nom = scanner.nextLine();
+                        System.out.print("Categoría: "); String cat = scanner.nextLine();
+                        System.out.print("Precio: "); double pre = Double.parseDouble(scanner.nextLine());
+                        System.out.print("Stock inicial: "); int stk = Integer.parseInt(scanner.nextLine());
+                        if(miInventario.registrarProducto(cod, nom, cat, pre, stk)) {
+                            System.out.println("Producto guardado con éxito.");
+                        }
+                        break;
+                    case 2:
+                        miInventario.consultarProductos();
+                        break;
+                    case 3:
+                        // Lógica para T-09 en el menú
+                        System.out.println("\n--- ACTUALIZAR PRECIO ---");
+                        System.out.print("Ingresa el código del producto: ");
+                        String codActualizar = scanner.nextLine();
+                        System.out.print("Ingresa el nuevo precio: ");
+                        double nuevoPrecio = Double.parseDouble(scanner.nextLine());
+                        
+                        miInventario.actualizarPrecio(codActualizar, nuevoPrecio);
+                        break;
+                    case 0:
+                        System.out.println("Saliendo del sistema...");
+                        break;
+                    default:
+                        System.out.println("Opción no válida.");
+                }
+            } catch (NumberFormatException e) {
+                // Atrapa el error si el usuario escribe letras donde van números
+                System.out.println("Error de entrada: Por favor ingresa únicamente valores numéricos. No se permiten letras.");
+                opcion = -1; // Mantiene el ciclo corriendo
             }
         } while (opcion != 0);
         
