@@ -21,14 +21,4 @@ public class Producto {
     public String getCategoria() { return categoria; }
     public double getPrecio() { return precio; }
     public int getStock() { return stock; }
-
-    public void actualizarPrecio(double nuevoPrecio) {
-        if (nuevoPrecio > 0) this.precio = nuevoPrecio;
-    }
-
-    public void reducirStock(int cantidad) {
-        if (cantidad > 0 && cantidad <= this.stock) {
-            this.stock -= cantidad;
-        }
-    }
 }
