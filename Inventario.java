@@ -5,12 +5,13 @@ import java.util.HashMap;
 
 public class Inventario {
     private List<Producto> productos;
+    private List<Venta> historialVentas = new ArrayList<>();
 
     public Inventario() {
         this.productos = new ArrayList<>();
     }
 
-// T-05: Registrar producto (Tellez)
+    // T-05: Registrar producto (Tellez)
     public boolean registrarProducto(String codigo, String nombre, String categoria, double precio, int stock) {
         try {
             productos.add(new Producto(codigo, nombre, categoria, precio, stock));
@@ -31,8 +32,31 @@ public class Inventario {
                 System.out.println(p.toString());
             }
         }
-        // T-16: Informe financiero por categoría usando HashMap 
-    public void generarInformeFinanciero() 
+    } 
+
+    public void realizarVenta(String idVenta, String codigoProducto, int cantidad) {
+        // Recorremos la lista para buscar el producto
+        for (Producto prod : productos) {
+            if (prod.getCodigo().equals(codigoProducto)) {
+                try {
+                    // Intenta crear la venta
+                    Venta nuevaVenta = new Venta(idVenta, prod, cantidad);
+
+                    // Si pasa las validaciones sin error, descuenta el stock y guarda la venta
+                    prod.reducirStock(cantidad);
+                    historialVentas.add(nuevaVenta);
+                    System.out.println("Venta exitosa. Total a pagar: $" + nuevaVenta.getTotalPagar());
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Error en la venta: " + e.getMessage());
+                }
+                return; 
+            }
+        }
+        System.out.println("Error: Producto no encontrado en el inventario.");
+    }
+    
+    // T-16: Informe financiero por categoría usando HashMap 
+    public void generarInformeFinanciero() {
         if (productos.isEmpty()) {
             System.out.println("No hay productos registrados para generar el informe financiero.");
             return;
@@ -51,4 +75,23 @@ public class Inventario {
         System.out.println("=== INFORME FINANCIERO POR CATEGORÍA ===");
         for (java.util.Map.Entry<String, Double> entry : reporteFinanciero.entrySet()) {
             System.out.println("Categoría: " + entry.getKey() + " | Valor Total Acumulado: $" + entry.getValue());
+        }   
+    }
+
+// T-09: Programar método para actualizar el precio (Zubieta)
+    public void actualizarPrecio(String codigoProducto, double nuevoPrecio) {
+        for (Producto prod : productos) {
+            if (prod.getCodigo().equals(codigoProducto)) {
+                try {
+                    prod.setPrecio(nuevoPrecio); // Modificando el estado del objeto
+                    System.out.println("Éxito: El precio de '" + prod.getNombre() + "' ha sido actualizado a $" + nuevoPrecio);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Error al actualizar: " + e.getMessage());
+                }
+                return; 
+            }
         }
+        // NUEVO MENSAJE SI EL CÓDIGO NO EXISTE
+        System.out.println("Error: Código no agregado. No se pudo actualizar el precio.");
+    }    
+}
