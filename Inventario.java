@@ -16,7 +16,7 @@ public class Inventario {
     // T-05: Registrar producto (Tellez)
     public boolean registrarProducto(String codigo, String nombre, String categoria, double precio, int stock) {
         try {
-            // CORREGIDO: Se unió la palabra productos.add
+            
             productos.add(new Producto(codigo, nombre, categoria, precio, stock));
             return true;
         } catch (IllegalArgumentException e) {
