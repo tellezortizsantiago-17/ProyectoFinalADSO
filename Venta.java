@@ -8,7 +8,7 @@ public class Venta {
     private Date fecha;
 
     public Venta(String idVenta, Producto producto, int cantidadComprada) {
-        // Aquí va la lógica vital de tu tarea:
+        
         if (cantidadComprada > producto.getStock()) {
             throw new IllegalArgumentException("No hay suficiente stock. Stock actual: " + producto.getStock());
         }
