@@ -13,6 +13,7 @@ public class Main {
             System.out.println("3. Actualizar precio de un producto");
             System.out.println("4. Mostrar categorías disponibles"); // Agregado para T-15
             System.out.println("5. Buscar productos por categoría"); // Agregado para T-14
+            System.out.println("6. Generar reporte financiero");
             System.out.println("0. Salir");
             System.out.print("Elige una opción: ");
 
@@ -53,6 +54,9 @@ public class Main {
                         String catBuscar = scanner.nextLine();
                         miInventario.buscarPorCategoria(catBuscar);
                         break;
+                        case 6:
+    miInventario.generarInformeFinanciero();
+    break;
                     case 0:
                         System.out.println("Saliendo del sistema...");
                         break;
