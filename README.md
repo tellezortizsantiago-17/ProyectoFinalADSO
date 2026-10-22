@@ -4,9 +4,9 @@
 Desarrollar un sistema interactivo por consola en Java que permita gestionar el inventario de una tienda, controlar el stock en tiempo real, procesar ventas y generar reportes financieros mediante el uso de Programación Orientada a Objetos y colecciones, garantizando un manejo seguro de los datos durante su ejecución.
 
 ## 👥 Equipo de Trabajo (Scrum Team)
-* **Santiago Tellez**
-* **Santiago Villada** 
-* **Daniel Zubieta** 
+* **Santiago Tellez:** Scrum Master y Development Team
+* **Santiago Villada:** Development Team
+* **Daniel Zubieta:** Product Owner y Development Team
 
 ## 🛠️ Tecnologías y Metodología
 * **Lenguaje:** Java (Aplicación de consola)
