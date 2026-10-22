@@ -10,7 +10,9 @@ public class Main {
             System.out.println("\n=== GESTOR DE INVENTARIO Y VENTAS ===");
             System.out.println("1. Registrar nuevo producto");
             System.out.println("2. Mostrar inventario completo");
-            System.out.println("3. Actualizar precio de un producto"); // Agregado para T-09
+            System.out.println("3. Actualizar precio de un producto");
+            System.out.println("4. Mostrar categorías disponibles"); // Agregado para T-15
+            System.out.println("5. Buscar productos por categoría"); // Agregado para T-14
             System.out.println("0. Salir");
             System.out.print("Elige una opción: ");
 
@@ -33,7 +35,6 @@ public class Main {
                         miInventario.consultarProductos();
                         break;
                     case 3:
-                        // Lógica para T-09 en el menú
                         System.out.println("\n--- ACTUALIZAR PRECIO ---");
                         System.out.print("Ingresa el código del producto: ");
                         String codActualizar = scanner.nextLine();
@@ -41,6 +42,16 @@ public class Main {
                         double nuevoPrecio = Double.parseDouble(scanner.nextLine());
                         
                         miInventario.actualizarPrecio(codActualizar, nuevoPrecio);
+                        break;
+                    case 4:
+                        // Lógica para T-15 en el menú
+                        miInventario.mostrarCategoriasUnicas();
+                        break;
+                    case 5:
+                        // Lógica para T-14 en el menú
+                        System.out.print("\nIngresa el nombre de la categoría a buscar: ");
+                        String catBuscar = scanner.nextLine();
+                        miInventario.buscarPorCategoria(catBuscar);
                         break;
                     case 0:
                         System.out.println("Saliendo del sistema...");

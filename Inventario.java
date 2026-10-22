@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Inventario {
     private List<Producto> productos;
@@ -78,7 +80,7 @@ public class Inventario {
         }   
     }
 
-// T-09: Programar método para actualizar el precio (Zubieta)
+    // T-09: Programar método para actualizar el precio (Zubieta)
     public void actualizarPrecio(String codigoProducto, double nuevoPrecio) {
         for (Producto prod : productos) {
             if (prod.getCodigo().equals(codigoProducto)) {
@@ -94,4 +96,40 @@ public class Inventario {
         // NUEVO MENSAJE SI EL CÓDIGO NO EXISTE
         System.out.println("Error: Código no agregado. No se pudo actualizar el precio.");
     }    
+
+    // T-14: Implementar método de búsqueda de productos filtrando por categoría (Zubieta)
+    public void buscarPorCategoria(String categoriaBuscada) {
+        boolean encontrado = false;
+        System.out.println("\n=== PRODUCTOS EN LA CATEGORÍA: " + categoriaBuscada.toUpperCase() + " ===");
+        
+        for (Producto prod : productos) {
+            if (prod.getCategoria().equalsIgnoreCase(categoriaBuscada)) {
+                System.out.println(prod.toString());
+                encontrado = true;
+            }
+        }
+        
+        if (!encontrado) {
+            System.out.println("No se encontraron productos en esta categoría.");
+        }
+    }
+
+    // T-15: Implementar consulta de categorías únicas utilizando la colección HashSet (Zubieta)
+    public void mostrarCategoriasUnicas() {
+        if (productos.isEmpty()) {
+            System.out.println("No hay productos registrados para extraer categorías.");
+            return;
+        }
+
+        Set<String> categoriasUnicas = new HashSet<>();
+        
+        for (Producto prod : productos) {
+            categoriasUnicas.add(prod.getCategoria());
+        }
+
+        System.out.println("\n=== CATEGORÍAS DISPONIBLES ===");
+        for (String cat : categoriasUnicas) {
+            System.out.println("- " + cat);
+        }
+    }
 }
